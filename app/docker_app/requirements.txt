@@ -1,0 +1,11 @@
+
+flask==2.2.0
+flask-sqlalchemy==3.0.2
+# sqlalchemy==1.4.20
+flask-wtf
+flask-login
+flask-openid
+flask-mail
+werkzeug==2.2.0
+markupsafe
+psycopg2
