@@ -1,0 +1,30 @@
+version: '3.8'
+services: 
+  db:
+    container_name: pg_belka
+    build: ./docker
+    restart: always
+    volumes:
+      - data:/var/lib/postgresql/data
+      # - .:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_DB: "pgdb"
+      POSTGRES_USER: "pguser"
+      POSTGRES_PASSWORD: "pgpass"
+    ports:
+      - 5432:5432
+  pg_admin:
+    container_name: pgadmin4_belka
+    image: dpage/pgadmin4
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@email.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_LISTEN_PORT=5050
+    ports:
+      - "5050:5050" 
+volumes:
+  data:
+    driver: local
